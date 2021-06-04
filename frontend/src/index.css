@@ -85,7 +85,8 @@ button:hover {
   border: 0.1rem #404040 solid;
 }
 button.primary {
-  background-color: #f0c040;
+  background-color: #ff0000;
+  color: #ffffff;
 }
 button.block {
   width: 100%;
@@ -130,7 +131,7 @@ a.brand {
   flex: 1 1 25rem;
 }
 .col-2 {
-  flex: 2 1 50rem;
+  flex: 1 1 50rem;
 }
 .col-3 {
   flex: 32 1 75rem;
@@ -177,7 +178,10 @@ aside li {
 button.close-sidebar {
   padding: 0.3rem 0.8rem;
 }
-
+.linkBackHome {
+  color: #2220a0;
+  align-items: flex-start;
+}
 /* Image */
 img {
   border-radius: 0.5rem;
@@ -191,12 +195,13 @@ img.medium {
   width: 100%;
 }
 img.large {
-  width: 100%;
+  width: 85%;
+  padding-left: 55px;
+  padding-top: 25px;
 }
 
 /* Card */
 .card {
-  border: 0.1rem #c0c0c0 solid;
   background-color: #f8f8f8;
   border-radius: 0.5rem;
   margin: 1rem;
@@ -217,6 +222,13 @@ img.large {
 }
 .rating span:last-child {
   color: #404040;
+}
+.col-1 p {
+  margin-top: 1px;
+}
+.card-body h2 {
+  margin-top: 1px;
+  padding-top: 1px;
 }
 /* Alert */
 .loading {
@@ -257,6 +269,10 @@ img.large {
 }
 .form label {
   margin: 1rem 0;
+}
+.form h2 {
+  margin-bottom: 1px;
+  padding-bottom: 1px;
 }
 /* Dropdown */
 .dropdown {

@@ -1,11 +1,13 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { createReview, detailsProduct } from '../actions/productActions';
-import LoadingBox from '../components/LoadingBox';
-import MessageBox from '../components/MessageBox';
-import Rating from '../components/Rating';
-import { PRODUCT_REVIEW_CREATE_RESET } from '../constants/productConstants';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { createReview, detailsProduct } from "../actions/productActions";
+import LoadingBox from "../components/LoadingBox";
+import MessageBox from "../components/MessageBox";
+import Rating from "../components/Rating";
+import { PRODUCT_REVIEW_CREATE_RESET } from "../constants/productConstants";
+import { AiFillHome } from "react-icons/ai";
+import { IoIosArrowBack } from "react-icons/io";
 
 export default function ProductScreen(props) {
   const dispatch = useDispatch();
@@ -24,13 +26,13 @@ export default function ProductScreen(props) {
   } = productReviewCreate;
 
   const [rating, setRating] = useState(0);
-  const [comment, setComment] = useState('');
+  const [comment, setComment] = useState("");
 
   useEffect(() => {
     if (successReviewCreate) {
-      window.alert('Review Submitted Successfully');
-      setRating('');
-      setComment('');
+      window.alert("Review Submitted Successfully");
+      setRating("");
+      setComment("");
       dispatch({ type: PRODUCT_REVIEW_CREATE_RESET });
     }
     dispatch(detailsProduct(productId));
@@ -45,7 +47,7 @@ export default function ProductScreen(props) {
         createReview(productId, { rating, comment, name: userInfo.name })
       );
     } else {
-      alert('Please enter comment and rating');
+      alert("Please enter comment and rating");
     }
   };
   return (
@@ -56,7 +58,6 @@ export default function ProductScreen(props) {
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
         <div>
-          <Link to="/">Back to result</Link>
           <div className="row top">
             <div className="col-2">
               <img
@@ -68,6 +69,11 @@ export default function ProductScreen(props) {
             <div className="col-1">
               <ul>
                 <li>
+                  <Link to="/" className="linkBackHome">
+                    <IoIosArrowBack size="1.5rem"/> Regresar al inicio
+                  </Link>
+                </li>
+                <li>
                   <h1>{product.name}</h1>
                 </li>
                 <li>
@@ -76,9 +82,9 @@ export default function ProductScreen(props) {
                     numReviews={product.numReviews}
                   ></Rating>
                 </li>
-                <li>Pirce : ${product.price}</li>
+                <li><b>Precio :</b> ${product.price}</li>
                 <li>
-                  Description:
+                  <b>Descripción:</b>
                   <p>{product.description}</p>
                 </li>
               </ul>
@@ -87,7 +93,7 @@ export default function ProductScreen(props) {
               <div className="card card-body">
                 <ul>
                   <li>
-                    Seller{' '}
+                    Vendedor{" "}
                     <h2>
                       <Link to={`/seller/${product.seller._id}`}>
                         {product.seller.seller.name}
@@ -100,18 +106,18 @@ export default function ProductScreen(props) {
                   </li>
                   <li>
                     <div className="row">
-                      <div>Price</div>
+                      <div><b>Precio: </b></div>
                       <div className="price">${product.price}</div>
                     </div>
                   </li>
                   <li>
                     <div className="row">
-                      <div>Status</div>
+                      <div><b>Estado: </b></div>
                       <div>
                         {product.countInStock > 0 ? (
-                          <span className="success">In Stock</span>
+                          <span className="success">En Stock</span>
                         ) : (
-                          <span className="danger">Unavailable</span>
+                          <span className="danger">No disponible</span>
                         )}
                       </div>
                     </div>
@@ -120,7 +126,7 @@ export default function ProductScreen(props) {
                     <>
                       <li>
                         <div className="row">
-                          <div>Qty</div>
+                          <div><b>Cantidad</b></div>
                           <div>
                             <select
                               value={qty}
@@ -142,7 +148,7 @@ export default function ProductScreen(props) {
                           onClick={addToCartHandler}
                           className="primary block"
                         >
-                          Add to Cart
+                          Añadir al carrito
                         </button>
                       </li>
                     </>
@@ -152,9 +158,9 @@ export default function ProductScreen(props) {
             </div>
           </div>
           <div>
-            <h2 id="reviews">Reviews</h2>
+            <h2 id="reviews">Reseñas</h2>
             {product.reviews.length === 0 && (
-              <MessageBox>There is no review</MessageBox>
+              <MessageBox>No hay reseña</MessageBox>
             )}
             <ul>
               {product.reviews.map((review) => (
@@ -169,7 +175,7 @@ export default function ProductScreen(props) {
                 {userInfo ? (
                   <form className="form" onSubmit={submitHandler}>
                     <div>
-                      <h2>Write a customer review</h2>
+                      <h2>Escribe una reseña</h2>
                     </div>
                     <div>
                       <label htmlFor="rating">Rating</label>
