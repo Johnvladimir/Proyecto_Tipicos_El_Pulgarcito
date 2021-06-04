@@ -85,7 +85,7 @@ button:hover {
   border: 0.1rem #404040 solid;
 }
 button.primary {
-  background-color: #ff0000;
+  background-color: #2ea3f2;
   color: #ffffff;
 }
 button.block {
@@ -179,7 +179,7 @@ button.close-sidebar {
   padding: 0.3rem 0.8rem;
 }
 .linkBackHome {
-  color: #2220a0;
+  color: #2ea3f2;
   align-items: flex-start;
 }
 /* Image */
