@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import { register } from '../actions/userActions';
 import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
+import { ImUserPlus } from "react-icons/im";
 
 export default function RegisterScreen(props) {
   const [name, setName] = useState('');
@@ -22,7 +23,7 @@ export default function RegisterScreen(props) {
   const submitHandler = (e) => {
     e.preventDefault();
     if (password !== confirmPassword) {
-      alert('Password and confirm password are not match');
+      alert('La contraseña y la contraseña de confirmación no coinciden');
     } else {
       dispatch(register(name, email, password));
     }
@@ -35,47 +36,48 @@ export default function RegisterScreen(props) {
   return (
     <div>
       <form className="form" onSubmit={submitHandler}>
-        <div>
-          <h1>Create Account</h1>
+        <div className="titleLogin">
+          <ImUserPlus size="5rem" color="#2ea3f2"/>
+          <h1>Crear cuenta</h1>
         </div>
         {loading && <LoadingBox></LoadingBox>}
         {error && <MessageBox variant="danger">{error}</MessageBox>}
         <div>
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name">Nombre</label>
           <input
             type="text"
             id="name"
-            placeholder="Enter name"
+            placeholder="Ingrese el nombre"
             required
             onChange={(e) => setName(e.target.value)}
           ></input>
         </div>
         <div>
-          <label htmlFor="email">Email address</label>
+          <label htmlFor="email">Correo</label>
           <input
             type="email"
             id="email"
-            placeholder="Enter email"
+            placeholder="Ingrese correo"
             required
             onChange={(e) => setEmail(e.target.value)}
           ></input>
         </div>
         <div>
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">Contraseña</label>
           <input
             type="password"
             id="password"
-            placeholder="Enter password"
+            placeholder="Ingrese la contraseña"
             required
             onChange={(e) => setPassword(e.target.value)}
           ></input>
         </div>
         <div>
-          <label htmlFor="confirmPassword">Confirm Password</label>
+          <label htmlFor="confirmPassword">Confirmar contraseña</label>
           <input
             type="password"
             id="confirmPassword"
-            placeholder="Enter confirm password"
+            placeholder="Ingrese nuevamente la contraseña"
             required
             onChange={(e) => setConfirmPassword(e.target.value)}
           ></input>
@@ -83,14 +85,14 @@ export default function RegisterScreen(props) {
         <div>
           <label />
           <button className="primary" type="submit">
-            Register
+            Registrar
           </button>
         </div>
-        <div>
+        <div className="subTitleLogin">
           <label />
           <div>
-            Already have an account?{' '}
-            <Link to={`/signin?redirect=${redirect}`}>Sign-In</Link>
+            ¿Ya tiene una cuenta?{' '}
+            <Link className="linkRegisterUser" to={`/signin?redirect=${redirect}`}>Inicia sesión</Link>
           </div>
         </div>
       </form>
