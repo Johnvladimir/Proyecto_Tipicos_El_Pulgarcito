@@ -34,8 +34,10 @@ import ChatBox from "./components/ChatBox";
 
 function App() {
   const cart = useSelector((state) => state.cart);
-  const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
   const { cartItems } = cart;
+
+  const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
+
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
   const dispatch = useDispatch();
@@ -53,6 +55,7 @@ function App() {
   useEffect(() => {
     dispatch(listProductCategories());
   }, [dispatch]);
+
   return (
     <BrowserRouter>
       <div className="grid-container">
@@ -146,52 +149,53 @@ function App() {
             )}
           </div>
         </header>
-        <aside className={sidebarIsOpen ? "open" : ""}>
-          <ul className="categories">
-            <li>
-              <strong>Categories</strong>
-              <button
-                onClick={() => setSidebarIsOpen(false)}
-                className="close-sidebar"
-                type="button"
-              >
-                <i className="fa fa-close"></i>
-              </button>
-            </li>
-            {loadingCategories ? (
-              <LoadingBox></LoadingBox>
-            ) : errorCategories ? (
-              <MessageBox variant="danger">{errorCategories}</MessageBox>
-            ) : (
-              categories.map(({ name, subCategories }) => (
-                <>
-                  <li key={name}>
-                    <Link
-                      to={`/search/category/${name}`}
-                      onClick={() => setSidebarIsOpen(false)}
-                      className="category-title"
-                    >
-                      {name}
-                    </Link>
-                  </li>
-                  <ul className="subcategories">
-                    {subCategories.map((subCategory) => (
-                      <li key={subCategory} className="subcategory">
-                        <Link
-                          to={`/search/category/${subCategory}`}
-                          onClick={() => setSidebarIsOpen(false)}
-                        >
-                          {subCategory}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </>
-              ))
-            )}
-          </ul>
-        </aside>
+
         <main>
+          <aside className={sidebarIsOpen ? "open" : ""}>
+            <ul className="categories">
+              <li className="categories-aside-title">
+                <strong>Categories</strong>
+                <button
+                  onClick={() => setSidebarIsOpen(false)}
+                  className="close-sidebar"
+                  type="button"
+                >
+                  <i className="fa fa-close"></i>
+                </button>
+              </li>
+              {loadingCategories ? (
+                <LoadingBox></LoadingBox>
+              ) : errorCategories ? (
+                <MessageBox variant="danger">{errorCategories}</MessageBox>
+              ) : (
+                categories.map(({ name, subCategories }) => (
+                  <>
+                    <li key={name}>
+                      <Link
+                        to={`/search/category/${name}`}
+                        onClick={() => setSidebarIsOpen(false)}
+                        className="category-title"
+                      >
+                        {name}
+                      </Link>
+                    </li>
+                    <ul className="subcategories">
+                      {subCategories.map((subCategory) => (
+                        <li key={subCategory} className="subcategory">
+                          <Link
+                            to={`/search/category/${subCategory}`}
+                            onClick={() => setSidebarIsOpen(false)}
+                          >
+                            {subCategory}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                ))
+              )}
+            </ul>
+          </aside>
           <Route path="/seller/:id" component={SellerScreen}></Route>
           <Route path="/cart/:id?" component={CartScreen}></Route>
           <Route path="/product/:id" component={ProductScreen} exact></Route>
