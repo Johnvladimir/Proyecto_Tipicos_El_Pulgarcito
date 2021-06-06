@@ -22,7 +22,7 @@ body {
     "main"
     "footer";
   grid-template-columns: 1fr;
-  grid-template-rows: 5rem 1fr 5rem;
+  grid-template-rows: var(--header-outer-height) 1fr 5rem;
   height: 100%;
 }
 :root {
@@ -36,10 +36,7 @@ body {
 header {
   grid-area: header;
   position: sticky;
-  height: var(--header-outer-height);
-  top: calc(
-    var(--header-height-difference) * -1
-  );
+  top: calc(var(--header-height-difference) * -1);
   background-color: var(--header-bg);
   box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.1);
 }
@@ -161,7 +158,7 @@ a.brand {
   justify-content: left;
 }
 .row.align {
-  justify-content: left;
+  justify-content: space-between;
 }
 .row.product-list {
   margin: 0 auto;
@@ -218,6 +215,7 @@ a.brand {
     transform: translateX(-30rem);
     transition: all 0.5s;
     top: 0;
+    padding-top: 0;
   }
   aside.open {
     transform: translateX(0);
@@ -231,7 +229,6 @@ a.brand {
     color: #ffffff;
     cursor: pointer;
   }
-
   button.close-sidebar {
     display: inline-block !important;
     font-size: 3rem;
@@ -241,9 +238,14 @@ a.brand {
     color: rgb(104, 101, 101);
     cursor: pointer;
   }
+  .categories {
+    margin-left: 2rem !important;
+    margin-top: 2rem !important;
+    margin-bottom: 3rem !important;
+  }
 }
 aside {
-  position: relative;
+  position: static;
   width: 30%;
   height: 100%;
   background-color: #fff;
@@ -267,15 +269,21 @@ button.close-sidebar {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin-bottom: 20px;
 }
 .categories {
   margin-left: 2rem;
+  margin-top: 5rem;
+  margin-bottom: 8rem;
+}
+.category-title-container {
+  margin-bottom: 1.1rem;
+  margin-top: 2rem;
 }
 .category-title {
   color: #727272;
   font-size: 16px;
   font-weight: 700;
-  margin-top: 2rem;
 }
 .subcategories {
   margin-left: 1.5rem;
@@ -310,7 +318,7 @@ img.large {
 .card {
   background-color: #f8f8f8;
   border-radius: 0.5rem;
-  margin: 1rem;
+  margin: 2rem;
 }
 .card-body {
   /*padding: 1rem;*/
@@ -383,7 +391,8 @@ img.large {
 .form {
   max-width: 45rem;
   margin: 50px auto;
-  box-shadow: 0 4px 4px 0 rgba(48, 44, 238, 0.16), 0 0 0 1px rgba(218, 26, 26, 0.08);
+  box-shadow: 0 4px 4px 0 rgba(48, 44, 238, 0.16),
+    0 0 0 1px rgba(218, 26, 26, 0.08);
   border-radius: 5px;
   padding: 1rem;
   height: auto;
@@ -401,7 +410,7 @@ img.large {
   padding-bottom: 1px;
 }
 .form input {
-  background: rgba(109,124,144,.1);
+  background: rgba(109, 124, 144, 0.1);
 }
 .form input:hover {
   border: 1px solid #2ea3f2;
@@ -420,10 +429,10 @@ img.large {
   align-items: center;
 }
 .linkRegisterUser {
-  Color: #2ea3f2;
+  color: #2ea3f2;
 }
 .linkRegisterUser:hover {
-  Color: #005b97;
+  color: #005b97;
 }
 .icon-cart {
   padding: 0;

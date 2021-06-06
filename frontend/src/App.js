@@ -179,7 +179,7 @@ function App() {
               ) : (
                 categories.map(({ name, subCategories }) => (
                   <>
-                    <li key={name}>
+                    <li key={name} className="category-title-container">
                       <Link
                         to={`/search/category/${name}`}
                         onClick={() => setSidebarIsOpen(false)}
