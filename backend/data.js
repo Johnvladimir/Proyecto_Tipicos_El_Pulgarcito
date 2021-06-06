@@ -26,7 +26,7 @@ const data = {
   products: [
     {
       name: "Nike Slim Shirt",
-      category: "Comida",
+      category: "Pupusas",
       image: "/images/p1.jpg",
       price: 120,
       countInStock: 10,
@@ -37,7 +37,7 @@ const data = {
     },
     {
       name: "Adidas Fit Shirt",
-      category: "Comida",
+      category: "Tipicos",
       image: "/images/p2.jpg",
       price: 100,
       countInStock: 20,
@@ -48,7 +48,7 @@ const data = {
     },
     {
       name: "Lacoste Free Shirt",
-      category: "Comida",
+      category: "Bebida",
       image: "/images/p3.jpg",
       price: 220,
       countInStock: 0,
@@ -59,7 +59,7 @@ const data = {
     },
     {
       name: "Nike Slim Pant",
-      category: "Bebida",
+      category: "Pupusas",
       image: "/images/p4.jpg",
       price: 78,
       countInStock: 15,
@@ -70,7 +70,7 @@ const data = {
     },
     {
       name: "Puma Slim Pant",
-      category: "Comida",
+      category: "Pupusas",
       image: "/images/p5.jpg",
       price: 65,
       countInStock: 5,
@@ -81,7 +81,7 @@ const data = {
     },
     {
       name: "Adidas Fit Pant",
-      category: "Comida",
+      category: "Tipicos",
       image: "/images/p6.jpg",
       price: 139,
       countInStock: 12,
@@ -94,37 +94,12 @@ const data = {
   categories: [
     {
       name: "Pupusas",
-      subCategories: [
-        "Frijol y queso",
-        "Revueltas",
-        "Queso",
-        "Queso y loroco",
-        "Jalapeño",
-        "Mora",
-        "Pollo",
-      ],
     },
     {
       name: "Típicos",
-      subCategories: [
-        "Empanadas",
-        "Enchiladas",
-        "Nuegados",
-        "Leche poleada",
-        "Pasteles de papa",
-        "Tamales de gallina",
-        "Yuca frita",
-        "Yuca salcochada",
-      ],
     },
     {
       name: "Bebidas",
-      subCategories: [
-        "Atol de maíz tostado",
-        "Atol shuco",
-        "Horchata",
-        "Cebada",
-      ],
     },
   ],
 };

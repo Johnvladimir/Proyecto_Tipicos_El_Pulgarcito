@@ -163,7 +163,7 @@ function App() {
           <aside className={sidebarIsOpen ? "open" : ""}>
             <ul className="categories">
               <li className="categories-aside-title">
-                <strong>Categories</strong>
+                <strong>Categorías</strong>
                 <button
                   onClick={() => setSidebarIsOpen(false)}
                   className="close-sidebar"
@@ -177,30 +177,16 @@ function App() {
               ) : errorCategories ? (
                 <MessageBox variant="danger">{errorCategories}</MessageBox>
               ) : (
-                categories.map(({ name, subCategories }) => (
-                  <>
-                    <li key={name} className="category-title-container">
-                      <Link
-                        to={`/search/category/${name}`}
-                        onClick={() => setSidebarIsOpen(false)}
-                        className="category-title"
-                      >
-                        {name}
-                      </Link>
-                    </li>
-                    <ul className="subcategories">
-                      {subCategories.map((subCategory) => (
-                        <li key={subCategory} className="subcategory">
-                          <Link
-                            to={`/search/category/${subCategory}`}
-                            onClick={() => setSidebarIsOpen(false)}
-                          >
-                            {subCategory}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </>
+                categories.map(({ name }) => (
+                  <li key={name} className="category-title-container">
+                    <Link
+                      to={`/search/category/${name}`}
+                      onClick={() => setSidebarIsOpen(false)}
+                      className="category-title"
+                    >
+                      {name}
+                    </Link>
+                  </li>
                 ))
               )}
             </ul>
