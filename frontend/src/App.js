@@ -62,30 +62,40 @@ function App() {
       <div className="grid-container">
         <header className="row">
           <div className="header-inner">
-            <div className="btn-sidebar-search">
-              <button
-                type="button"
-                className="open-sidebar"
-                onClick={() => setSidebarIsOpen(true)}
-              >
-                <i className="fa fa-bars"></i>
-              </button>
-              <Route
-                render={({ history }) => (
-                  <SearchBox history={history}></SearchBox>
-                )}
-              ></Route>
-            </div>
+            <button
+              type="button"
+              className="open-sidebar"
+              onClick={() => setSidebarIsOpen(true)}
+            >
+              <i className="fa fa-bars"></i>
+            </button>
 
-            <div>
-              <Link to="#">Sobre nosotros</Link>
-              <Link className="brand" to="/">
-                Tipicos el pulgarcito
+            <div className="logo-and-items">
+              <div className="logo-container">
+                <Link className="brand" to="/">
+                  <img
+                    src="/images/logo.jpeg"
+                    alt="logo"
+                    className="logo-img"
+                  />
+                </Link>
+              </div>
+              <Link className="options" to="#">
+                Sobre nosotros
               </Link>
-              <Link to="#">Preguntas frecuentes</Link>
+              <Link className="options" to="#">
+                Preguntas frecuentes
+              </Link>
             </div>
 
             <div className="icon-cart">
+              <div className="search-container">
+                <Route
+                  render={({ history }) => (
+                    <SearchBox history={history}></SearchBox>
+                  )}
+                ></Route>
+              </div>
               <Link to="/cart">
                 <FaShoppingCart size="2.2rem" />
                 {cartItems.length > 0 && (
@@ -161,24 +171,42 @@ function App() {
 
         <main>
           <aside className={sidebarIsOpen ? "open" : ""}>
-            <ul className="categories">
-              <li className="categories-aside-title">
-                <strong>Categorías</strong>
-                <button
-                  onClick={() => setSidebarIsOpen(false)}
-                  className="close-sidebar"
-                  type="button"
-                >
-                  <i className="fa fa-close"></i>
-                </button>
+            <div className="close-sidebar-container">
+              <button
+                onClick={() => setSidebarIsOpen(false)}
+                className="close-sidebar"
+                type="button"
+              >
+                <i className="fa fa-close"></i>
+              </button>
+            </div>
+            <div className="search-container">
+              <Route
+                render={({ history }) => (
+                  <SearchBox history={history}></SearchBox>
+                )}
+              ></Route>
+            </div>
+            <ul className="aside-items">
+              <li className="item aboutus">
+                <Link to="#">Sobre nosotros</Link>
               </li>
+              <li className="item faq">
+                <Link to="#">Preguntas frecuentes</Link>
+              </li>
+
+              <li className="item categories-aside-title">
+                <strong>Categorías</strong>
+              </li>
+            </ul>
+            <ul className="categories-items-container">
               {loadingCategories ? (
                 <LoadingBox></LoadingBox>
               ) : errorCategories ? (
                 <MessageBox variant="danger">{errorCategories}</MessageBox>
               ) : (
                 categories.map(({ name }) => (
-                  <li key={name} className="category-title-container">
+                  <li key={name} className="category-item">
                     <Link
                       to={`/search/category/${name}`}
                       onClick={() => setSidebarIsOpen(false)}
