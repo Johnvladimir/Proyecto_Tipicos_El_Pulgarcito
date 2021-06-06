@@ -12,7 +12,7 @@ export default function OrderHistoryScreen(props) {
     dispatch(listOrderMine());
   }, [dispatch]);
   return (
-    <div>
+    <div className="margin-top">
       <h1>Order History</h1>
       {loading ? (
         <LoadingBox></LoadingBox>
