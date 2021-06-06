@@ -2,6 +2,7 @@ import express from "express";
 import expressAsyncHandler from "express-async-handler";
 import data from "../data.js";
 import Product from "../models/productModel.js";
+import Category from "../models/categoryModel";
 import User from "../models/userModel.js";
 import { isAdmin, isAuth, isSellerOrAdmin } from "../utils.js";
 
@@ -63,7 +64,7 @@ productRouter.get(
 productRouter.get(
   "/categories",
   expressAsyncHandler(async (req, res) => {
-    const categories = await Product.find().distinct("category");
+    const categories = await Category.find({});
     res.send(categories);
   })
 );
@@ -85,6 +86,16 @@ productRouter.get(
         .status(500)
         .send({ message: "No seller found. first run /api/users/seed" });
     }
+  })
+);
+
+productRouter.get(
+  "/categories/seed",
+  expressAsyncHandler(async (req, res) => {
+    await Category.remove({});
+    const { categories } = data;
+    const createdCategories = await Category.insertMany(categories);
+    res.send({ createdCategories });
   })
 );
 

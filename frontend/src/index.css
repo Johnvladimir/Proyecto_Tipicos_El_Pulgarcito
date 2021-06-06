@@ -49,6 +49,7 @@ h2 {
 
 a {
   text-decoration: none;
+  color: unset;
 }
 a:hover {
   color: #ff8000;
@@ -200,7 +201,8 @@ aside ul {
 aside li {
   display: flex;
   justify-content: space-between;
-  padding: 1rem;
+  padding: 1rem 1rem 0.5rem 2rem;
+  margin: 0.3rem;
 }
 button.close-sidebar {
   padding: 0.3rem 0.8rem;
@@ -509,4 +511,17 @@ img.large {
 }
 .support-users .unread {
   background-color: #f02020;
+}
+
+/* SIDEBAR */
+.category-title {
+  color: #727272;
+  font-size: 16px;
+  font-weight: 700;
+  margin-top: 2rem;
+}
+.subcategories {
+  margin-left: 1.5rem;
+  font-size: 14px;
+  color: #727272;
 }
