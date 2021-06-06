@@ -1,17 +1,18 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { signin } from '../actions/userActions';
-import LoadingBox from '../components/LoadingBox';
-import MessageBox from '../components/MessageBox';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { signin } from "../actions/userActions";
+import LoadingBox from "../components/LoadingBox";
+import MessageBox from "../components/MessageBox";
+import { FaUserLock } from "react-icons/fa";
 
 export default function SigninScreen(props) {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const redirect = props.location.search
-    ? props.location.search.split('=')[1]
-    : '/';
+    ? props.location.search.split("=")[1]
+    : "/";
 
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo, loading, error } = userSignin;
@@ -29,27 +30,28 @@ export default function SigninScreen(props) {
   return (
     <div>
       <form className="form" onSubmit={submitHandler}>
-        <div>
-          <h1>Sign In</h1>
+        <div className="titleLogin">
+          <FaUserLock size="5rem" color="#2ea3f2" />
+          <h1>Inicio de sesión</h1>
         </div>
         {loading && <LoadingBox></LoadingBox>}
         {error && <MessageBox variant="danger">{error}</MessageBox>}
         <div>
-          <label htmlFor="email">Email address</label>
+          <label htmlFor="email">Correo</label>
           <input
             type="email"
             id="email"
-            placeholder="Enter email"
+            placeholder="Ingrese el correo"
             required
             onChange={(e) => setEmail(e.target.value)}
           ></input>
         </div>
         <div>
-          <label htmlFor="password">Password</label>
+          <label htmlFor="password">Contraseña</label>
           <input
             type="password"
             id="password"
-            placeholder="Enter password"
+            placeholder="Ingrese la contraseña"
             required
             onChange={(e) => setPassword(e.target.value)}
           ></input>
@@ -57,16 +59,14 @@ export default function SigninScreen(props) {
         <div>
           <label />
           <button className="primary" type="submit">
-            Sign In
+            Iniciar sesión
           </button>
         </div>
-        <div>
+        <div className="subTitleLogin">
           <label />
           <div>
-            New customer?{' '}
-            <Link to={`/register?redirect=${redirect}`}>
-              Create your account
-            </Link>
+            ¿No tienes cuenta?{" "}
+            <Link className="linkRegisterUser" to={`/register?redirect=${redirect}`}>Crear una cuenta</Link>
           </div>
         </div>
       </form>

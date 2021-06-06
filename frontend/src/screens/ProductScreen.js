@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { createReview, detailsProduct } from '../actions/productActions';
-import LoadingBox from '../components/LoadingBox';
-import MessageBox from '../components/MessageBox';
-import Rating from '../components/Rating';
-import { PRODUCT_REVIEW_CREATE_RESET } from '../constants/productConstants';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { createReview, detailsProduct } from "../actions/productActions";
+import LoadingBox from "../components/LoadingBox";
+import MessageBox from "../components/MessageBox";
+import Rating from "../components/Rating";
+import { PRODUCT_REVIEW_CREATE_RESET } from "../constants/productConstants";
+import { IoIosArrowBack } from "react-icons/io";
 
 export default function ProductScreen(props) {
   const dispatch = useDispatch();
@@ -24,13 +25,13 @@ export default function ProductScreen(props) {
   } = productReviewCreate;
 
   const [rating, setRating] = useState(0);
-  const [comment, setComment] = useState('');
+  const [comment, setComment] = useState("");
 
   useEffect(() => {
     if (successReviewCreate) {
-      window.alert('Review Submitted Successfully');
-      setRating('');
-      setComment('');
+      window.alert("Revisión enviada con éxito");
+      setRating("");
+      setComment("");
       dispatch({ type: PRODUCT_REVIEW_CREATE_RESET });
     }
     dispatch(detailsProduct(productId));
@@ -45,7 +46,7 @@ export default function ProductScreen(props) {
         createReview(productId, { rating, comment, name: userInfo.name })
       );
     } else {
-      alert('Please enter comment and rating');
+      alert("Por favor ingrese comentario y calificación");
     }
   };
   return (
@@ -56,7 +57,6 @@ export default function ProductScreen(props) {
         <MessageBox variant="danger">{error}</MessageBox>
       ) : (
         <div>
-          <Link to="/">Back to result</Link>
           <div className="row top">
             <div className="col-2">
               <img
@@ -68,6 +68,11 @@ export default function ProductScreen(props) {
             <div className="col-1">
               <ul>
                 <li>
+                  <Link to="/" className="linkBackHome">
+                    <IoIosArrowBack size="1.5rem"/> Regresar al inicio
+                  </Link>
+                </li>
+                <li>
                   <h1>{product.name}</h1>
                 </li>
                 <li>
@@ -76,9 +81,9 @@ export default function ProductScreen(props) {
                     numReviews={product.numReviews}
                   ></Rating>
                 </li>
-                <li>Pirce : ${product.price}</li>
+                <li><b>Precio :</b> ${product.price}</li>
                 <li>
-                  Description:
+                  <b>Descripción:</b>
                   <p>{product.description}</p>
                 </li>
               </ul>
@@ -87,7 +92,7 @@ export default function ProductScreen(props) {
               <div className="card card-body">
                 <ul>
                   <li>
-                    Seller{' '}
+                    Vendedor{" "}
                     <h2>
                       <Link to={`/seller/${product.seller._id}`}>
                         {product.seller.seller.name}
@@ -100,18 +105,18 @@ export default function ProductScreen(props) {
                   </li>
                   <li>
                     <div className="row">
-                      <div>Price</div>
+                      <div><b>Precio: </b></div>
                       <div className="price">${product.price}</div>
                     </div>
                   </li>
                   <li>
                     <div className="row">
-                      <div>Status</div>
+                      <div><b>Estado: </b></div>
                       <div>
                         {product.countInStock > 0 ? (
-                          <span className="success">In Stock</span>
+                          <span className="success">En Stock</span>
                         ) : (
-                          <span className="danger">Unavailable</span>
+                          <span className="danger">No disponible</span>
                         )}
                       </div>
                     </div>
@@ -120,7 +125,7 @@ export default function ProductScreen(props) {
                     <>
                       <li>
                         <div className="row">
-                          <div>Qty</div>
+                          <div><b>Cantidad</b></div>
                           <div>
                             <select
                               value={qty}
@@ -142,7 +147,7 @@ export default function ProductScreen(props) {
                           onClick={addToCartHandler}
                           className="primary block"
                         >
-                          Add to Cart
+                          Añadir al carrito
                         </button>
                       </li>
                     </>
@@ -152,9 +157,9 @@ export default function ProductScreen(props) {
             </div>
           </div>
           <div>
-            <h2 id="reviews">Reviews</h2>
+            <h2 id="reviews">Reseñas</h2>
             {product.reviews.length === 0 && (
-              <MessageBox>There is no review</MessageBox>
+              <MessageBox>No hay reseña</MessageBox>
             )}
             <ul>
               {product.reviews.map((review) => (
@@ -169,25 +174,25 @@ export default function ProductScreen(props) {
                 {userInfo ? (
                   <form className="form" onSubmit={submitHandler}>
                     <div>
-                      <h2>Write a customer review</h2>
+                      <h2>Escribe una reseña</h2>
                     </div>
                     <div>
-                      <label htmlFor="rating">Rating</label>
+                      <label htmlFor="rating">Clasificación</label>
                       <select
                         id="rating"
                         value={rating}
                         onChange={(e) => setRating(e.target.value)}
                       >
-                        <option value="">Select...</option>
-                        <option value="1">1- Poor</option>
-                        <option value="2">2- Fair</option>
-                        <option value="3">3- Good</option>
-                        <option value="4">4- Very good</option>
-                        <option value="5">5- Excelent</option>
+                        <option value="">Seleccione...</option>
+                        <option value="1">1- Pobre</option>
+                        <option value="2">2- Justo</option>
+                        <option value="3">3- Bueno</option>
+                        <option value="4">4- Muy bueno</option>
+                        <option value="5">5- Excelente</option>
                       </select>
                     </div>
                     <div>
-                      <label htmlFor="comment">Comment</label>
+                      <label htmlFor="comment">Comentario</label>
                       <textarea
                         id="comment"
                         value={comment}
@@ -197,7 +202,7 @@ export default function ProductScreen(props) {
                     <div>
                       <label />
                       <button className="primary" type="submit">
-                        Submit
+                        Enviar
                       </button>
                     </div>
                     <div>
@@ -211,7 +216,7 @@ export default function ProductScreen(props) {
                   </form>
                 ) : (
                   <MessageBox>
-                    Please <Link to="/signin">Sign In</Link> to write a review
+                    Por favor <Link to="/signin">Inicia sesión</Link> para escribir una reseña
                   </MessageBox>
                 )}
               </li>
