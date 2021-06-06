@@ -31,11 +31,14 @@ import MapScreen from "./screens/MapScreen";
 import DashboardScreen from "./screens/DashboardScreen";
 import SupportScreen from "./screens/SupportScreen";
 import ChatBox from "./components/ChatBox";
+import { FaShoppingCart, FaUserAlt } from "react-icons/fa";
 
 function App() {
   const cart = useSelector((state) => state.cart);
-  const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
   const { cartItems } = cart;
+
+  const [sidebarIsOpen, setSidebarIsOpen] = useState(false);
+
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
   const dispatch = useDispatch();
@@ -53,145 +56,155 @@ function App() {
   useEffect(() => {
     dispatch(listProductCategories());
   }, [dispatch]);
+
   return (
     <BrowserRouter>
       <div className="grid-container">
         <header className="row">
-          <div>
-            <button
-              type="button"
-              className="open-sidebar"
-              onClick={() => setSidebarIsOpen(true)}
-            >
-              <i className="fa fa-bars"></i>
-            </button>
-            <Link className="brand" to="/">
-              amazona
-            </Link>
-          </div>
-          <div>
-            <Route
-              render={({ history }) => (
-                <SearchBox history={history}></SearchBox>
+          <div className="header-inner">
+            <div className="btn-sidebar-search">
+              <button
+                type="button"
+                className="open-sidebar"
+                onClick={() => setSidebarIsOpen(true)}
+              >
+                <i className="fa fa-bars"></i>
+              </button>
+              <Route
+                render={({ history }) => (
+                  <SearchBox history={history}></SearchBox>
+                )}
+              ></Route>
+            </div>
+
+            <div>
+              <Link to="#">Sobre nosotros</Link>
+              <Link className="brand" to="/">
+                Tipicos el pulgarcito
+              </Link>
+              <Link to="#">Preguntas frecuentes</Link>
+            </div>
+
+            <div className="icon-cart">
+              <Link to="/cart">
+                <FaShoppingCart size="2.2rem" />
+                {cartItems.length > 0 && (
+                  <span className="badge">{cartItems.length}</span>
+                )}
+              </Link>
+              {userInfo ? (
+                <div className="dropdown">
+                  <Link to="#">
+                    {userInfo.name} <i className="fa fa-caret-down"></i>{" "}
+                  </Link>
+                  <ul className="dropdown-content">
+                    <li>
+                      <Link to="/profile">Perfil de usuario</Link>
+                    </li>
+                    <li>
+                      <Link to="/orderhistory">Historial de ordenes</Link>
+                    </li>
+                    <li>
+                      <Link to="#signout" onClick={signoutHandler}>
+                        Cerrar sesión
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              ) : (
+                <Link to="/signin">
+                  <FaUserAlt size="2.2rem" />
+                </Link>
               )}
-            ></Route>
-          </div>
-          <div>
-            <Link to="/cart">
-              Cart
-              {cartItems.length > 0 && (
-                <span className="badge">{cartItems.length}</span>
+              {userInfo && userInfo.isSeller && (
+                <div className="dropdown">
+                  <Link to="#admin">
+                    Vendedor <i className="fa fa-caret-down"></i>
+                  </Link>
+                  <ul className="dropdown-content">
+                    <li>
+                      <Link to="/productlist/seller">Productos</Link>
+                    </li>
+                    <li>
+                      <Link to="/orderlist/seller">Ordenes</Link>
+                    </li>
+                  </ul>
+                </div>
               )}
-            </Link>
-            {userInfo ? (
-              <div className="dropdown">
-                <Link to="#">
-                  {userInfo.name} <i className="fa fa-caret-down"></i>{" "}
-                </Link>
-                <ul className="dropdown-content">
-                  <li>
-                    <Link to="/profile">User Profile</Link>
-                  </li>
-                  <li>
-                    <Link to="/orderhistory">Order History</Link>
-                  </li>
-                  <li>
-                    <Link to="#signout" onClick={signoutHandler}>
-                      Sign Out
-                    </Link>
-                  </li>
-                </ul>
-              </div>
-            ) : (
-              <Link to="/signin">Sign In</Link>
-            )}
-            {userInfo && userInfo.isSeller && (
-              <div className="dropdown">
-                <Link to="#admin">
-                  Seller <i className="fa fa-caret-down"></i>
-                </Link>
-                <ul className="dropdown-content">
-                  <li>
-                    <Link to="/productlist/seller">Products</Link>
-                  </li>
-                  <li>
-                    <Link to="/orderlist/seller">Orders</Link>
-                  </li>
-                </ul>
-              </div>
-            )}
-            {userInfo && userInfo.isAdmin && (
-              <div className="dropdown">
-                <Link to="#admin">
-                  Admin <i className="fa fa-caret-down"></i>
-                </Link>
-                <ul className="dropdown-content">
-                  <li>
-                    <Link to="/dashboard">Dashboard</Link>
-                  </li>
-                  <li>
-                    <Link to="/productlist">Products</Link>
-                  </li>
-                  <li>
-                    <Link to="/orderlist">Orders</Link>
-                  </li>
-                  <li>
-                    <Link to="/userlist">Users</Link>
-                  </li>
-                  <li>
-                    <Link to="/support">Support</Link>
-                  </li>
-                </ul>
-              </div>
-            )}
+              {userInfo && userInfo.isAdmin && (
+                <div className="dropdown">
+                  <Link to="#admin">
+                    Admin <i className="fa fa-caret-down"></i>
+                  </Link>
+                  <ul className="dropdown-content">
+                    <li>
+                      <Link to="/dashboard">Dashboard</Link>
+                    </li>
+                    <li>
+                      <Link to="/productlist">Productos</Link>
+                    </li>
+                    <li>
+                      <Link to="/orderlist">Ordenes</Link>
+                    </li>
+                    <li>
+                      <Link to="/userlist">Usuarios</Link>
+                    </li>
+                    <li>
+                      <Link to="/support">Soporte</Link>
+                    </li>
+                  </ul>
+                </div>
+              )}
+            </div>
           </div>
         </header>
-        <aside className={sidebarIsOpen ? "open" : ""}>
-          <ul className="categories">
-            <li>
-              <strong>Categories</strong>
-              <button
-                onClick={() => setSidebarIsOpen(false)}
-                className="close-sidebar"
-                type="button"
-              >
-                <i className="fa fa-close"></i>
-              </button>
-            </li>
-            {loadingCategories ? (
-              <LoadingBox></LoadingBox>
-            ) : errorCategories ? (
-              <MessageBox variant="danger">{errorCategories}</MessageBox>
-            ) : (
-              categories.map(({ name, subCategories }) => (
-                <>
-                  <li key={name}>
-                    <Link
-                      to={`/search/category/${name}`}
-                      onClick={() => setSidebarIsOpen(false)}
-                      className="category-title"
-                    >
-                      {name}
-                    </Link>
-                  </li>
-                  <ul className="subcategories">
-                    {subCategories.map((subCategory) => (
-                      <li key={subCategory} className="subcategory">
-                        <Link
-                          to={`/search/category/${subCategory}`}
-                          onClick={() => setSidebarIsOpen(false)}
-                        >
-                          {subCategory}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </>
-              ))
-            )}
-          </ul>
-        </aside>
+
         <main>
+          <aside className={sidebarIsOpen ? "open" : ""}>
+            <ul className="categories">
+              <li className="categories-aside-title">
+                <strong>Categories</strong>
+                <button
+                  onClick={() => setSidebarIsOpen(false)}
+                  className="close-sidebar"
+                  type="button"
+                >
+                  <i className="fa fa-close"></i>
+                </button>
+              </li>
+              {loadingCategories ? (
+                <LoadingBox></LoadingBox>
+              ) : errorCategories ? (
+                <MessageBox variant="danger">{errorCategories}</MessageBox>
+              ) : (
+                categories.map(({ name, subCategories }) => (
+                  <>
+                    <li key={name} className="category-title-container">
+                      <Link
+                        to={`/search/category/${name}`}
+                        onClick={() => setSidebarIsOpen(false)}
+                        className="category-title"
+                      >
+                        {name}
+                      </Link>
+                    </li>
+                    <ul className="subcategories">
+                      {subCategories.map((subCategory) => (
+                        <li key={subCategory} className="subcategory">
+                          <Link
+                            to={`/search/category/${subCategory}`}
+                            onClick={() => setSidebarIsOpen(false)}
+                          >
+                            {subCategory}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </>
+                ))
+              )}
+            </ul>
+          </aside>
           <Route path="/seller/:id" component={SellerScreen}></Route>
           <Route path="/cart/:id?" component={CartScreen}></Route>
           <Route path="/product/:id" component={ProductScreen} exact></Route>
@@ -270,9 +283,10 @@ function App() {
 
           <Route path="/" component={HomeScreen} exact></Route>
         </main>
+
         <footer className="row center">
           {userInfo && !userInfo.isAdmin && <ChatBox userInfo={userInfo} />}
-          <div>All right reserved</div>{" "}
+          <div>Todos los derechos resevados</div>{" "}
         </footer>
       </div>
     </BrowserRouter>
