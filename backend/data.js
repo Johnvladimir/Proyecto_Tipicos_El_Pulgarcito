@@ -48,7 +48,7 @@ const data = {
     },
     {
       name: "Lacoste Free Shirt",
-      category: "Bebida",
+      category: "Bebidas",
       image: "/images/p3.jpg",
       price: 220,
       countInStock: 0,
@@ -96,7 +96,7 @@ const data = {
       name: "Pupusas",
     },
     {
-      name: "Típicos",
+      name: "Tipicos",
     },
     {
       name: "Bebidas",
