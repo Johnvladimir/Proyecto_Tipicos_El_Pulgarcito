@@ -272,6 +272,7 @@ header a.options {
 }
 .col-2 {
   flex: 1 1 25rem;
+  margin-left: 10px;
 }
 .col-3 {
   flex: 32 1 75rem;
