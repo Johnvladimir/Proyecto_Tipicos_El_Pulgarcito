@@ -88,7 +88,7 @@ export default function SearchScreen(props) {
               {products.length === 0 && (
                 <MessageBox>No Product Found</MessageBox>
               )}
-              <div className="row align product-list">
+              <div className="row align searchscreen product-list">
                 {products.map((product) => (
                   <Product key={product._id} product={product}></Product>
                 ))}

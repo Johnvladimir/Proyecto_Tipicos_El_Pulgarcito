@@ -237,6 +237,9 @@ header a.options {
 .row.align {
   justify-content: space-between;
 }
+.row.searchscreen {
+  justify-content: flex-start !important;
+}
 .row.product-list {
   margin: 0 auto;
   max-width: 90%;
