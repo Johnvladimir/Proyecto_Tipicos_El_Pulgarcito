@@ -20,8 +20,6 @@ import ProductEditScreen from "./screens/ProductEditScreen";
 import OrderListScreen from "./screens/OrderListScreen";
 import UserListScreen from "./screens/UserListScreen";
 import UserEditScreen from "./screens/UserEditScreen";
-import SellerRoute from "./components/SellerRoute";
-import SellerScreen from "./screens/SellerScreen";
 import SearchBox from "./components/SearchBox";
 import SearchScreen from "./screens/SearchScreen";
 import { listProductCategories } from "./actions/productActions";
@@ -126,21 +124,6 @@ function App() {
                   <FaUserAlt size="2.2rem" />
                 </Link>
               )}
-              {userInfo && userInfo.isSeller && (
-                <div className="dropdown">
-                  <Link to="#admin">
-                    Vendedor <i className="fa fa-caret-down"></i>
-                  </Link>
-                  <ul className="dropdown-content">
-                    <li>
-                      <Link to="/productlist/seller">Productos</Link>
-                    </li>
-                    <li>
-                      <Link to="/orderlist/seller">Ordenes</Link>
-                    </li>
-                  </ul>
-                </div>
-              )}
               {userInfo && userInfo.isAdmin && (
                 <div className="dropdown">
                   <Link to="#admin">
@@ -219,7 +202,6 @@ function App() {
               )}
             </ul>
           </aside>
-          <Route path="/seller/:id" component={SellerScreen}></Route>
           <Route path="/cart/:id?" component={CartScreen}></Route>
           <Route path="/product/:id" component={ProductScreen} exact></Route>
           <Route
@@ -285,15 +267,6 @@ function App() {
             component={DashboardScreen}
           ></AdminRoute>
           <AdminRoute path="/support" component={SupportScreen}></AdminRoute>
-
-          <SellerRoute
-            path="/productlist/seller"
-            component={ProductListScreen}
-          ></SellerRoute>
-          <SellerRoute
-            path="/orderlist/seller"
-            component={OrderListScreen}
-          ></SellerRoute>
 
           <Route path="/" component={HomeScreen} exact></Route>
         </main>
