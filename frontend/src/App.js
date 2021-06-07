@@ -31,6 +31,7 @@ import MapScreen from "./screens/MapScreen";
 import DashboardScreen from "./screens/DashboardScreen";
 import SupportScreen from "./screens/SupportScreen";
 import ChatBox from "./components/ChatBox";
+import AboutScreen from "./screens/AboutScreen";
 import { FaShoppingCart, FaUserAlt } from "react-icons/fa";
 
 function App() {
@@ -83,7 +84,7 @@ function App() {
               <Link className="options" to="#">
                 Sobre nosotros
               </Link>
-              <Link className="options" to="#">
+              <Link className="options" to="/about">
                 Preguntas frecuentes
               </Link>
             </div>
@@ -192,7 +193,7 @@ function App() {
                 <Link to="#">Sobre nosotros</Link>
               </li>
               <li className="item faq">
-                <Link to="#">Preguntas frecuentes</Link>
+                <Link to="/about">Preguntas frecuentes</Link>
               </li>
 
               <li className="item categories-aside-title">
@@ -234,6 +235,7 @@ function App() {
           <Route path="/placeorder" component={PlaceOrderScreen}></Route>
           <Route path="/order/:id" component={OrderScreen}></Route>
           <Route path="/orderhistory" component={OrderHistoryScreen}></Route>
+          <Route path="/about" component={AboutScreen}></Route>
           <Route
             path="/search/name/:name?"
             component={SearchScreen}

@@ -785,3 +785,27 @@ img.large {
 .support-users .unread {
   background-color: #f02020;
 }
+.about-container {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: flex-start;
+  width: 100%;
+  margin-top: 15px;
+}
+.about-title {
+  margin: 0px;
+  text-align: center;
+  background-color: #2ea3f2;
+}
+.about-title h1 {
+  font-size: 25px;
+  color: white;
+}
+.about-details {
+  margin-left: 15px;
+  margin-right: 15px;
+}
+.about-details p {
+  text-align: justify;
+}
