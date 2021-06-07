@@ -69,7 +69,7 @@ export default function ProductScreen(props) {
               <ul>
                 <li>
                   <Link to="/" className="linkBackHome">
-                    <IoIosArrowBack size="1.5rem"/> Regresar al inicio
+                    <IoIosArrowBack size="1.5rem" /> Regresar al inicio
                   </Link>
                 </li>
                 <li>
@@ -81,7 +81,9 @@ export default function ProductScreen(props) {
                     numReviews={product.numReviews}
                   ></Rating>
                 </li>
-                <li><b>Precio :</b> ${product.price}</li>
+                <li>
+                  <b>Precio :</b> ${product.price}
+                </li>
                 <li>
                   <b>Descripción:</b>
                   <p>{product.description}</p>
@@ -92,26 +94,18 @@ export default function ProductScreen(props) {
               <div className="card card-body">
                 <ul>
                   <li>
-                    Vendedor{" "}
-                    <h2>
-                      <Link to={`/seller/${product.seller._id}`}>
-                        {product.seller.seller.name}
-                      </Link>
-                    </h2>
-                    <Rating
-                      rating={product.seller.seller.rating}
-                      numReviews={product.seller.seller.numReviews}
-                    ></Rating>
-                  </li>
-                  <li>
                     <div className="row">
-                      <div><b>Precio: </b></div>
+                      <div>
+                        <b>Precio: </b>
+                      </div>
                       <div className="price">${product.price}</div>
                     </div>
                   </li>
                   <li>
                     <div className="row">
-                      <div><b>Estado: </b></div>
+                      <div>
+                        <b>Estado: </b>
+                      </div>
                       <div>
                         {product.countInStock > 0 ? (
                           <span className="success">En Stock</span>
@@ -125,7 +119,9 @@ export default function ProductScreen(props) {
                     <>
                       <li>
                         <div className="row">
-                          <div><b>Cantidad</b></div>
+                          <div>
+                            <b>Cantidad</b>
+                          </div>
                           <div>
                             <select
                               value={qty}
@@ -216,7 +212,8 @@ export default function ProductScreen(props) {
                   </form>
                 ) : (
                   <MessageBox>
-                    Por favor <Link to="/signin">Inicia sesión</Link> para escribir una reseña
+                    Por favor <Link to="/signin">Inicia sesión</Link> para
+                    escribir una reseña
                   </MessageBox>
                 )}
               </li>
