@@ -1,12 +1,12 @@
 import React from "react";
 
-export default function AboutScreen(props) {
+export default function FAQScreen(props) {
   return (
-    <div className="about-container">
-      <div className="about-title">
-        <h1>Preguntas frecuentes</h1>
+    <div className="faq-container">
+      <div className="faq-title">
+        <h1>PREGUNTAS FRECUENTES</h1>
       </div>
-      <div className="about-details">
+      <div className="faq-details">
         <h2>1. Cobertura / compras en línea </h2>
         <p>
           Nuestra zona de cobertura abarca exclusivamente el municipio de Santa
