@@ -23,16 +23,12 @@ import UserEditScreen from "./screens/UserEditScreen";
 import SearchBox from "./components/SearchBox";
 import SearchScreen from "./screens/SearchScreen";
 import { listProductCategories } from "./actions/productActions";
-import LoadingBox from "./components/LoadingBox";
-import MessageBox from "./components/MessageBox";
 import MapScreen from "./screens/MapScreen";
 import DashboardScreen from "./screens/DashboardScreen";
 import SupportScreen from "./screens/SupportScreen";
 import ChatBox from "./components/ChatBox";
 import AboutScreen from "./screens/AboutScreen";
 import { FaShoppingCart, FaUserAlt } from "react-icons/fa";
-
-import Aside from "./components/Aside";
 
 function App() {
   const cart = useSelector((state) => state.cart);
