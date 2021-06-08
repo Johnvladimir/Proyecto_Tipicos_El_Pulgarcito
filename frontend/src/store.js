@@ -21,6 +21,13 @@ import {
   productUpdateReducer,
 } from "./reducers/productReducers";
 import {
+  categoryCreateReducer,
+  categoryDeleteReducer,
+  categoryDetailsReducer,
+  categoryListReducer,
+  categoryUpdateReducer,
+} from "./reducers/categoryReducers";
+import {
   userAddressMapReducer,
   userDeleteReducer,
   userDetailsReducer,
@@ -72,6 +79,11 @@ const reducer = combineReducers({
   productReviewCreate: productReviewCreateReducer,
   userAddressMap: userAddressMapReducer,
   orderSummary: orderSummaryReducer,
+  categoryCreate: categoryCreateReducer,
+  categoryDelete: categoryDeleteReducer,
+  categoryDetails: categoryDetailsReducer,
+  categoryList: categoryListReducer,
+  categoryUpdate: categoryUpdateReducer,
 });
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const store = createStore(

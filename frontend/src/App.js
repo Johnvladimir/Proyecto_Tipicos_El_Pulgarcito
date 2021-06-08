@@ -29,6 +29,9 @@ import SupportScreen from "./screens/SupportScreen";
 import ChatBox from "./components/ChatBox";
 import AboutScreen from "./screens/AboutScreen";
 import { FaShoppingCart, FaUserAlt } from "react-icons/fa";
+import CategoryListScreen from "./screens/CategoryListScreen";
+import CategoryEditScreen from "./screens/CategoryEditScreen";
+import CategoryCreateScreen from "./screens/CategoryCreateScreen";
 
 function App() {
   const cart = useSelector((state) => state.cart);
@@ -49,6 +52,8 @@ function App() {
     error: errorCategories,
     categories,
   } = productCategoryList;
+
+  console.log(categories, "TEST1");
 
   useEffect(() => {
     dispatch(listProductCategories());
@@ -136,6 +141,9 @@ function App() {
                       <Link to="/productlist">Productos</Link>
                     </li>
                     <li>
+                      <Link to="/categorylist">Categorias</Link>
+                    </li>
+                    <li>
                       <Link to="/orderlist">Ordenes</Link>
                     </li>
                     <li>
@@ -170,6 +178,16 @@ function App() {
           <Route
             path="/product/:id/edit"
             component={ProductEditScreen}
+            exact
+          ></Route>
+          <Route
+            path="/category/:id/edit"
+            component={CategoryEditScreen}
+            exact
+          ></Route>
+          <Route
+            path="/category/create"
+            component={CategoryCreateScreen}
             exact
           ></Route>
           <Route path="/signin" component={SigninScreen}></Route>
@@ -214,6 +232,11 @@ function App() {
           <AdminRoute
             path="/productlist"
             component={ProductListScreen}
+            exact
+          ></AdminRoute>
+          <AdminRoute
+            path="/categorylist"
+            component={CategoryListScreen}
             exact
           ></AdminRoute>
           <AdminRoute

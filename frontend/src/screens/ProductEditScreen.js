@@ -1,20 +1,21 @@
-import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import Axios from 'axios';
-import { detailsProduct, updateProduct } from '../actions/productActions';
-import LoadingBox from '../components/LoadingBox';
-import MessageBox from '../components/MessageBox';
-import { PRODUCT_UPDATE_RESET } from '../constants/productConstants';
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import Axios from "axios";
+import { detailsProduct, updateProduct } from "../actions/productActions";
+import { listCategories } from "../actions/categoryActions";
+import LoadingBox from "../components/LoadingBox";
+import MessageBox from "../components/MessageBox";
+import { PRODUCT_UPDATE_RESET } from "../constants/productConstants";
 
 export default function ProductEditScreen(props) {
   const productId = props.match.params.id;
-  const [name, setName] = useState('');
-  const [price, setPrice] = useState('');
-  const [image, setImage] = useState('');
-  const [category, setCategory] = useState('');
-  const [countInStock, setCountInStock] = useState('');
-  const [brand, setBrand] = useState('');
-  const [description, setDescription] = useState('');
+  const [name, setName] = useState("");
+  const [price, setPrice] = useState("");
+  const [image, setImage] = useState("");
+  const [category, setCategory] = useState("");
+  const [countInStock, setCountInStock] = useState("");
+  const [brand, setBrand] = useState("");
+  const [description, setDescription] = useState("");
 
   const productDetails = useSelector((state) => state.productDetails);
   const { loading, error, product } = productDetails;
@@ -26,10 +27,20 @@ export default function ProductEditScreen(props) {
     success: successUpdate,
   } = productUpdate;
 
+  const categoryList = useSelector((state) => state.categoryList);
+  const { categories } = categoryList;
+  console.log(categoryList, "categories in editscreen");
+
   const dispatch = useDispatch();
+
   useEffect(() => {
     if (successUpdate) {
-      props.history.push('/productlist');
+      props.history.push("/productlist");
+    }
+    if (!categories || categories.length === 0) {
+      dispatch(listCategories({}));
+    } else {
+      setCategory(categories[0].name);
     }
     if (!product || product._id !== productId || successUpdate) {
       dispatch({ type: PRODUCT_UPDATE_RESET });
@@ -38,7 +49,7 @@ export default function ProductEditScreen(props) {
       setName(product.name);
       setPrice(product.price);
       setImage(product.image);
-      setCategory(product.category);
+      //setCategory(product.category);
       setCountInStock(product.countInStock);
       setBrand(product.brand);
       setDescription(product.description);
@@ -61,19 +72,20 @@ export default function ProductEditScreen(props) {
     );
   };
   const [loadingUpload, setLoadingUpload] = useState(false);
-  const [errorUpload, setErrorUpload] = useState('');
+  const [errorUpload, setErrorUpload] = useState("");
 
   const userSignin = useSelector((state) => state.userSignin);
   const { userInfo } = userSignin;
+
   const uploadFileHandler = async (e) => {
     const file = e.target.files[0];
     const bodyFormData = new FormData();
-    bodyFormData.append('image', file);
+    bodyFormData.append("image", file);
     setLoadingUpload(true);
     try {
-      const { data } = await Axios.post('/api/uploads', bodyFormData, {
+      const { data } = await Axios.post("/api/uploads", bodyFormData, {
         headers: {
-          'Content-Type': 'multipart/form-data',
+          "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${userInfo.token}`,
         },
       });
@@ -144,13 +156,17 @@ export default function ProductEditScreen(props) {
             </div>
             <div>
               <label htmlFor="category">Category</label>
-              <input
+              <select
                 id="category"
-                type="text"
-                placeholder="Enter category"
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
-              ></input>
+              >
+                {categories.map(({ name }) => (
+                  <option key={name} value={name}>
+                    {name}
+                  </option>
+                ))}
+              </select>
             </div>
             <div>
               <label htmlFor="brand">Brand</label>

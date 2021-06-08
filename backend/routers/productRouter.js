@@ -101,7 +101,7 @@ productRouter.post(
   isAdmin,
   expressAsyncHandler(async (req, res) => {
     const product = new Product({
-      name: "sample name " + Date.now(),
+      name: "nombre de ejemplo ",
       image: "/images/p1.jpg",
       price: 0,
       category: "sample category",
