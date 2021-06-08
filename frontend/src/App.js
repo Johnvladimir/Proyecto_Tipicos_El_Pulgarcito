@@ -25,8 +25,6 @@ import SearchBox from "./components/SearchBox";
 import SearchScreen from "./screens/SearchScreen";
 import { listProductCategories } from "./actions/productActions";
 import MapScreen from "./screens/MapScreen";
-import DashboardScreen from "./screens/DashboardScreen";
-import SupportScreen from "./screens/SupportScreen";
 import ChatBox from "./components/ChatBox";
 import FAQScreen from "./screens/FAQScreen";
 import AboutUs from "./screens/AboutUs";
@@ -137,9 +135,6 @@ function App() {
                   </Link>
                   <ul className="dropdown-content">
                     <li>
-                      <Link to="/dashboard">Dashboard</Link>
-                    </li>
-                    <li>
                       <Link to="/productlist">Productos</Link>
                     </li>
                     <li>
@@ -150,9 +145,6 @@ function App() {
                     </li>
                     <li>
                       <Link to="/userlist">Usuarios</Link>
-                    </li>
-                    <li>
-                      <Link to="/support">Soporte</Link>
                     </li>
                   </ul>
                 </div>
@@ -262,12 +254,6 @@ function App() {
             path="/user/:id/edit"
             component={UserEditScreen}
           ></AdminRoute>
-
-          <AdminRoute
-            path="/dashboard"
-            component={DashboardScreen}
-          ></AdminRoute>
-          <AdminRoute path="/support" component={SupportScreen}></AdminRoute>
 
           <Route
             path="/"
