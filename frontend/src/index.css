@@ -54,7 +54,7 @@ header {
 }
 main {
   grid-area: main;
-  display: flex;
+  /*display: flex;*/
   /*padding: 1rem;*/
 }
 footer {
@@ -803,4 +803,8 @@ img.large {
 }
 .results-container .filter .filter-button select {
   border: solid 1px rgb(153, 149, 149);
+}
+
+.flex-container {
+  display: flex;
 }

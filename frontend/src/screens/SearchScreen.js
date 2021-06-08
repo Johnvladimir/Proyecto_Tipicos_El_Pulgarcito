@@ -5,6 +5,7 @@ import { listProducts } from "../actions/productActions";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
 import Product from "../components/Product";
+import Aside from "../components/Aside";
 import Rating from "../components/Rating";
 import { prices, ratings } from "../utils";
 
@@ -21,6 +22,8 @@ export default function SearchScreen(props) {
   const dispatch = useDispatch();
   const productList = useSelector((state) => state.productList);
   const { loading, error, products, page, pages } = productList;
+
+  const { sidebarIsOpen, setSidebarIsOpen } = props;
 
   const productCategoryList = useSelector((state) => state.productCategoryList);
   const {
@@ -53,59 +56,68 @@ export default function SearchScreen(props) {
     return `/search/category/${filterCategory}/name/${filterName}/min/${filterMin}/max/${filterMax}/rating/${filterRating}/order/${sortOrder}/pageNumber/${filterPage}`;
   };
   return (
-    <div className="results-container">
-      <div className="filter row">
-        {loading ? (
-          <LoadingBox></LoadingBox>
-        ) : error ? (
-          <MessageBox variant="danger">{error}</MessageBox>
-        ) : (
-          <div className="results-box">{products.length} Resultados</div>
-        )}
-        <div className="filter-button">
-          Ordenar por{" "}
-          <select
-            value={order}
-            onChange={(e) => {
-              props.history.push(getFilterUrl({ order: e.target.value }));
-            }}
-          >
-            <option value="newest">Las ultimas</option>
-            <option value="lowest">Precio: Bajo a Alto</option>
-            <option value="highest">Precio: Alto a Bajo</option>
-            <option value="toprated">Popularidad</option>
-          </select>
-        </div>
-      </div>
-      <div className="">
-        <div>
+    <div className="flex-container">
+      <Aside
+        sidebarIsOpen={sidebarIsOpen}
+        setSidebarIsOpen={setSidebarIsOpen}
+        loadingCategories={loading}
+        errorCategories={error}
+        categories={categories}
+      />
+      <div className="results-container">
+        <div className="filter row">
           {loading ? (
             <LoadingBox></LoadingBox>
           ) : error ? (
             <MessageBox variant="danger">{error}</MessageBox>
           ) : (
-            <>
-              {products.length === 0 && (
-                <MessageBox>No Product Found</MessageBox>
-              )}
-              <div className="row align searchscreen product-list">
-                {products.map((product) => (
-                  <Product key={product._id} product={product}></Product>
-                ))}
-              </div>
-              <div className="row center pagination">
-                {[...Array(pages).keys()].map((x) => (
-                  <Link
-                    className={x + 1 === page ? "active" : ""}
-                    key={x + 1}
-                    to={getFilterUrl({ page: x + 1 })}
-                  >
-                    {x + 1}
-                  </Link>
-                ))}
-              </div>
-            </>
+            <div className="results-box">{products.length} Resultados</div>
           )}
+          <div className="filter-button">
+            Ordenar por{" "}
+            <select
+              value={order}
+              onChange={(e) => {
+                props.history.push(getFilterUrl({ order: e.target.value }));
+              }}
+            >
+              <option value="newest">Las ultimas</option>
+              <option value="lowest">Precio: Bajo a Alto</option>
+              <option value="highest">Precio: Alto a Bajo</option>
+              <option value="toprated">Popularidad</option>
+            </select>
+          </div>
+        </div>
+        <div className="">
+          <div>
+            {loading ? (
+              <LoadingBox></LoadingBox>
+            ) : error ? (
+              <MessageBox variant="danger">{error}</MessageBox>
+            ) : (
+              <>
+                {products.length === 0 && (
+                  <MessageBox>No Product Found</MessageBox>
+                )}
+                <div className="row align searchscreen product-list">
+                  {products.map((product) => (
+                    <Product key={product._id} product={product}></Product>
+                  ))}
+                </div>
+                <div className="row center pagination">
+                  {[...Array(pages).keys()].map((x) => (
+                    <Link
+                      className={x + 1 === page ? "active" : ""}
+                      key={x + 1}
+                      to={getFilterUrl({ page: x + 1 })}
+                    >
+                      {x + 1}
+                    </Link>
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
         </div>
       </div>
     </div>

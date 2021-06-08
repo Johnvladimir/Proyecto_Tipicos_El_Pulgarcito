@@ -31,6 +31,8 @@ import SupportScreen from "./screens/SupportScreen";
 import ChatBox from "./components/ChatBox";
 import { FaShoppingCart, FaUserAlt } from "react-icons/fa";
 
+import Aside from "./components/Aside";
+
 function App() {
   const cart = useSelector((state) => state.cart);
   const { cartItems } = cart;
@@ -153,57 +155,21 @@ function App() {
         </header>
 
         <main>
-          <aside className={sidebarIsOpen ? "open" : ""}>
-            <div className="close-sidebar-container">
-              <button
-                onClick={() => setSidebarIsOpen(false)}
-                className="close-sidebar"
-                type="button"
-              >
-                <i className="fa fa-close"></i>
-              </button>
-            </div>
-            <div className="search-container">
-              <Route
-                render={({ history }) => (
-                  <SearchBox history={history}></SearchBox>
-                )}
-              ></Route>
-            </div>
-            <ul className="aside-items">
-              <li className="item aboutus">
-                <Link to="#">Sobre nosotros</Link>
-              </li>
-              <li className="item faq">
-                <Link to="#">Preguntas frecuentes</Link>
-              </li>
-
-              <li className="item categories-aside-title">
-                <strong>Categorías</strong>
-              </li>
-            </ul>
-            <ul className="categories-items-container">
-              {loadingCategories ? (
-                <LoadingBox></LoadingBox>
-              ) : errorCategories ? (
-                <MessageBox variant="danger">{errorCategories}</MessageBox>
-              ) : (
-                categories.map(({ name }) => (
-                  <li key={name} className="category-item">
-                    <Link
-                      to={`/search/category/${name}`}
-                      onClick={() => setSidebarIsOpen(false)}
-                      className="category-title"
-                    >
-                      {name}
-                    </Link>
-                  </li>
-                ))
-              )}
-            </ul>
-          </aside>
           <Route path="/cart/:id?" component={CartScreen}></Route>
-          <Route path="/product/:id" component={ProductScreen} exact></Route>
+          <Route
+            path="/product/:id"
+            render={(props) => (
+              <ProductScreen
+                {...props}
+                sidebarIsOpen={sidebarIsOpen}
+                setSidebarIsOpen={setSidebarIsOpen}
+                loadingCategories={loadingCategories}
+                errorCategories={errorCategories}
+                categories={categories}
+              />
+            )}
+            exact
+          ></Route>
           <Route
             path="/product/:id/edit"
             component={ProductEditScreen}
@@ -223,7 +189,13 @@ function App() {
           ></Route>
           <Route
             path="/search/category/:category"
-            component={SearchScreen}
+            render={(props) => (
+              <SearchScreen
+                {...props}
+                sidebarIsOpen={sidebarIsOpen}
+                setSidebarIsOpen={setSidebarIsOpen}
+              />
+            )}
             exact
           ></Route>
           <Route
@@ -268,7 +240,20 @@ function App() {
           ></AdminRoute>
           <AdminRoute path="/support" component={SupportScreen}></AdminRoute>
 
-          <Route path="/" component={HomeScreen} exact></Route>
+          <Route
+            path="/"
+            render={(props) => (
+              <HomeScreen
+                {...props}
+                sidebarIsOpen={sidebarIsOpen}
+                setSidebarIsOpen={setSidebarIsOpen}
+                loadingCategories={loadingCategories}
+                errorCategories={errorCategories}
+                categories={categories}
+              />
+            )}
+            exact
+          ></Route>
         </main>
 
         <footer className="row center">
