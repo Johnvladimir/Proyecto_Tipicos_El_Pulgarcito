@@ -36,13 +36,13 @@ export default function CategoryListScreen(props) {
   return (
     <div className="margin-top">
       <div className="table-header row">
-        <h1>Categories</h1>
+        <h1>Categorías</h1>
         <button
           type="button"
           className="create-button primary"
           onClick={() => props.history.push(`/category/create`)}
         >
-          Create Category
+          Crear Categoría
         </button>
       </div>
 
@@ -59,8 +59,8 @@ export default function CategoryListScreen(props) {
             <thead>
               <tr>
                 <th>ID</th>
-                <th>NAME</th>
-                <th>ACTIONS</th>
+                <th>NOMBRE</th>
+                <th>ACCIONES</th>
               </tr>
             </thead>
             <tbody>
@@ -76,14 +76,14 @@ export default function CategoryListScreen(props) {
                         props.history.push(`/category/${category._id}/edit`)
                       }
                     >
-                      Edit
+                      Editar
                     </button>
                     <button
                       type="button"
                       className="delete-button small"
                       onClick={() => deleteHandler(category)}
                     >
-                      Delete
+                      Eliminar
                     </button>
                   </td>
                 </tr>

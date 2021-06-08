@@ -50,12 +50,12 @@ export default function ProductScreen(props) {
   };
   const submitHandler = (e) => {
     e.preventDefault();
-    if (comment && rating) {
+    if (rating) {
       dispatch(
         createReview(productId, { rating, comment, name: userInfo.name })
       );
     } else {
-      alert("Por favor ingrese comentario y calificación");
+      alert("Por favor ingrese calificación");
     }
   };
   return (
@@ -204,14 +204,14 @@ export default function ProductScreen(props) {
                           <option value="5">5- Excelente</option>
                         </select>
                       </div>
-                      <div>
+                      {/* <div>
                         <label htmlFor="comment">Comentario</label>
                         <textarea
                           id="comment"
                           value={comment}
                           onChange={(e) => setComment(e.target.value)}
                         ></textarea>
-                      </div>
+                      </div> */}
                       <div>
                         <label />
                         <button className="primary" type="submit">

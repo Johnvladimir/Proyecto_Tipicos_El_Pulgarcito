@@ -138,10 +138,10 @@ function App() {
                       <Link to="/productlist">Productos</Link>
                     </li>
                     <li>
-                      <Link to="/categorylist">Categorias</Link>
+                      <Link to="/categorylist">Categorías</Link>
                     </li>
                     <li>
-                      <Link to="/orderlist">Ordenes</Link>
+                      <Link to="/orderlist">Órdenes</Link>
                     </li>
                     <li>
                       <Link to="/userlist">Usuarios</Link>

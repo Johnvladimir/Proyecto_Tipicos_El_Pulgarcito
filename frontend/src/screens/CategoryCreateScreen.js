@@ -42,11 +42,11 @@ export default function CategoryEditScreen(props) {
         {errorCreate && <MessageBox variant="danger">{errorCreate}</MessageBox>}
         <>
           <div>
-            <label htmlFor="name">Name</label>
+            <label htmlFor="name">Nombre</label>
             <input
               id="name"
               type="text"
-              placeholder="Enter name"
+              placeholder="Ingresar nombre"
               value={name}
               required
               onChange={(e) => setName(e.target.value)}

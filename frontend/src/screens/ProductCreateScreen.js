@@ -98,26 +98,26 @@ export default function ProductEditScreen(props) {
         {errorCreate && <MessageBox variant="danger">{errorCreate}</MessageBox>}
         <>
           <div>
-            <label htmlFor="name">Name</label>
+            <label htmlFor="name">Nombre</label>
             <input
               id="name"
               type="text"
-              placeholder="Enter name"
+              placeholder="Ingresar nombre"
               value={name}
               onChange={(e) => setName(e.target.value)}
             ></input>
           </div>
           <div>
-            <label htmlFor="price">Price</label>
+            <label htmlFor="price">Precio</label>
             <input
               id="price"
               type="text"
-              placeholder="Enter price"
+              placeholder="Ingresar precio"
               value={price}
               onChange={(e) => setPrice(e.target.value)}
             ></input>
           </div>
-          <div>
+          {/* <div>
             <label htmlFor="image">Image</label>
             <input
               id="image"
@@ -126,13 +126,13 @@ export default function ProductEditScreen(props) {
               value={image}
               onChange={(e) => setImage(e.target.value)}
             ></input>
-          </div>
+          </div> */}
           <div>
-            <label htmlFor="imageFile">Image File</label>
+            <label htmlFor="imageFile">Archivo de imagen</label>
             <input
               type="file"
               id="imageFile"
-              label="Choose Image"
+              label="Seleccionar archivo"
               onChange={uploadFileHandler}
             ></input>
             {loadingUpload && <LoadingBox></LoadingBox>}
@@ -141,7 +141,7 @@ export default function ProductEditScreen(props) {
             )}
           </div>
           <div>
-            <label htmlFor="category">Category</label>
+            <label htmlFor="category">Categoría</label>
             {loadingCategories ? (
               <LoadingBox></LoadingBox>
             ) : errorCategories ? (
@@ -160,7 +160,7 @@ export default function ProductEditScreen(props) {
               </select>
             )}
           </div>
-          <div>
+          {/* <div>
             <label htmlFor="brand">Brand</label>
             <input
               id="brand"
@@ -169,24 +169,24 @@ export default function ProductEditScreen(props) {
               value={brand}
               onChange={(e) => setBrand(e.target.value)}
             ></input>
-          </div>
+          </div> */}
           <div>
-            <label htmlFor="countInStock">Count In Stock</label>
+            <label htmlFor="countInStock">Cantidad en inventario</label>
             <input
               id="countInStock"
               type="text"
-              placeholder="Enter countInStock"
+              placeholder="Ingresar cantidad en inventario"
               value={countInStock}
               onChange={(e) => setCountInStock(e.target.value)}
             ></input>
           </div>
           <div>
-            <label htmlFor="description">Description</label>
+            <label htmlFor="description">Descripción</label>
             <textarea
               id="description"
               rows="3"
               type="text"
-              placeholder="Enter description"
+              placeholder="Ingresar descripción"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>
@@ -194,7 +194,7 @@ export default function ProductEditScreen(props) {
           <div>
             <label></label>
             <button className="primary" type="submit">
-              Crear
+              Crear Producto
             </button>
           </div>
         </>
