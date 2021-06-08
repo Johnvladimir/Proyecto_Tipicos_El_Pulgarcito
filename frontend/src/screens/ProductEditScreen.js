@@ -28,7 +28,11 @@ export default function ProductEditScreen(props) {
   } = productUpdate;
 
   const categoryList = useSelector((state) => state.categoryList);
-  const { categories } = categoryList;
+  const {
+    loading: loadingCategories,
+    error: errorCategories,
+    categories,
+  } = categoryList;
   console.log(categoryList, "categories in editscreen");
 
   const dispatch = useDispatch();
@@ -49,12 +53,12 @@ export default function ProductEditScreen(props) {
       setName(product.name);
       setPrice(product.price);
       setImage(product.image);
-      //setCategory(product.category);
+      setCategory(product.category);
       setCountInStock(product.countInStock);
       setBrand(product.brand);
       setDescription(product.description);
     }
-  }, [product, dispatch, productId, successUpdate, props.history]);
+  }, [product, categories, dispatch, productId, successUpdate, props.history]);
   const submitHandler = (e) => {
     e.preventDefault();
     // TODO: dispatch update product
@@ -156,17 +160,23 @@ export default function ProductEditScreen(props) {
             </div>
             <div>
               <label htmlFor="category">Category</label>
-              <select
-                id="category"
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-              >
-                {categories.map(({ name }) => (
-                  <option key={name} value={name}>
-                    {name}
-                  </option>
-                ))}
-              </select>
+              {loadingCategories ? (
+                <LoadingBox></LoadingBox>
+              ) : errorCategories ? (
+                <MessageBox>{errorCategories}</MessageBox>
+              ) : (
+                <select
+                  id="category"
+                  value={category}
+                  onChange={(e) => setCategory(e.target.value)}
+                >
+                  {categories.map(({ name }) => (
+                    <option key={name} value={name}>
+                      {name}
+                    </option>
+                  ))}
+                </select>
+              )}
             </div>
             <div>
               <label htmlFor="brand">Brand</label>

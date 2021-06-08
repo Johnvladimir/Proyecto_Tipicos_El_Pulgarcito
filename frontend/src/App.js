@@ -16,6 +16,7 @@ import ProfileScreen from "./screens/ProfileScreen";
 import RegisterScreen from "./screens/RegisterScreen";
 import ShippingAddressScreen from "./screens/ShippingAddressScreen";
 import SigninScreen from "./screens/SigninScreen";
+import ProductCreateScreen from "./screens/ProductCreateScreen";
 import ProductEditScreen from "./screens/ProductEditScreen";
 import OrderListScreen from "./screens/OrderListScreen";
 import UserListScreen from "./screens/UserListScreen";
@@ -176,18 +177,23 @@ function App() {
             exact
           ></Route>
           <Route
+            path="/product/create/new"
+            component={ProductCreateScreen}
+            exact
+          ></Route>
+          <Route
             path="/product/:id/edit"
             component={ProductEditScreen}
             exact
           ></Route>
           <Route
-            path="/category/:id/edit"
-            component={CategoryEditScreen}
+            path="/category/create"
+            component={CategoryCreateScreen}
             exact
           ></Route>
           <Route
-            path="/category/create"
-            component={CategoryCreateScreen}
+            path="/category/:id/edit"
+            component={CategoryEditScreen}
             exact
           ></Route>
           <Route path="/signin" component={SigninScreen}></Route>

@@ -1,31 +1,16 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
-import {
-  createProduct,
-  deleteProduct,
-  listProducts,
-} from "../actions/productActions";
+import { deleteProduct, listProducts } from "../actions/productActions";
 import LoadingBox from "../components/LoadingBox";
 import MessageBox from "../components/MessageBox";
-import {
-  PRODUCT_CREATE_RESET,
-  PRODUCT_DELETE_RESET,
-} from "../constants/productConstants";
+import { PRODUCT_DELETE_RESET } from "../constants/productConstants";
 
 export default function ProductListScreen(props) {
   const { pageNumber = 1 } = useParams();
 
   const productList = useSelector((state) => state.productList);
   const { loading, error, products, page, pages } = productList;
-
-  const productCreate = useSelector((state) => state.productCreate);
-  const {
-    loading: loadingCreate,
-    error: errorCreate,
-    success: successCreate,
-    product: createdProduct,
-  } = productCreate;
 
   const productDelete = useSelector((state) => state.productDelete);
   const {
@@ -37,37 +22,27 @@ export default function ProductListScreen(props) {
   const { userInfo } = userSignin;
   const dispatch = useDispatch();
   useEffect(() => {
-    if (successCreate) {
-      dispatch({ type: PRODUCT_CREATE_RESET });
-      props.history.push(`/product/${createdProduct._id}/edit`);
-    }
     if (successDelete) {
       dispatch({ type: PRODUCT_DELETE_RESET });
     }
     dispatch(listProducts({ pageNumber }));
-  }, [
-    createdProduct,
-    dispatch,
-    props.history,
-    successCreate,
-    successDelete,
-    userInfo._id,
-    pageNumber,
-  ]);
+  }, [dispatch, props.history, successDelete, userInfo._id, pageNumber]);
 
   const deleteHandler = (product) => {
     if (window.confirm("Are you sure to delete?")) {
       dispatch(deleteProduct(product._id));
     }
   };
-  const createHandler = () => {
-    dispatch(createProduct());
-  };
+
   return (
     <div className="margin-top">
       <div className="row">
         <h1>Products</h1>
-        <button type="button" className="primary" onClick={createHandler}>
+        <button
+          type="button"
+          className="primary"
+          onClick={() => props.history.push(`/product/create/new`)}
+        >
           Create Product
         </button>
       </div>
@@ -75,8 +50,6 @@ export default function ProductListScreen(props) {
       {loadingDelete && <LoadingBox></LoadingBox>}
       {errorDelete && <MessageBox variant="danger">{errorDelete}</MessageBox>}
 
-      {loadingCreate && <LoadingBox></LoadingBox>}
-      {errorCreate && <MessageBox variant="danger">{errorCreate}</MessageBox>}
       {loading ? (
         <LoadingBox></LoadingBox>
       ) : error ? (
