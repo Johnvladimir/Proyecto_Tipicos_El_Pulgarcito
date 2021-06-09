@@ -13,7 +13,6 @@ export default function ProductEditScreen(props) {
   const [image, setImage] = useState("");
   const [category, setCategory] = useState("");
   const [countInStock, setCountInStock] = useState("");
-  const [brand, setBrand] = useState("");
   const [description, setDescription] = useState("");
 
   const productCreate = useSelector((state) => state.productCreate);
@@ -56,7 +55,6 @@ export default function ProductEditScreen(props) {
         price,
         image,
         category,
-        brand,
         countInStock,
         description,
       })
@@ -160,16 +158,6 @@ export default function ProductEditScreen(props) {
               </select>
             )}
           </div>
-          {/* <div>
-            <label htmlFor="brand">Brand</label>
-            <input
-              id="brand"
-              type="text"
-              placeholder="Enter brand"
-              value={brand}
-              onChange={(e) => setBrand(e.target.value)}
-            ></input>
-          </div> */}
           <div>
             <label htmlFor="countInStock">Cantidad en inventario</label>
             <input

@@ -106,7 +106,6 @@ productRouter.post(
       image: req.body.image,
       price: req.body.price,
       category: req.body.category,
-      brand: req.body.brand,
       countInStock: req.body.countInStock,
       rating: 0,
       numReviews: 0,
@@ -128,7 +127,6 @@ productRouter.put(
       product.price = req.body.price;
       product.image = req.body.image;
       product.category = req.body.category;
-      product.brand = req.body.brand;
       product.countInStock = req.body.countInStock;
       product.description = req.body.description;
       const updatedProduct = await product.save();
