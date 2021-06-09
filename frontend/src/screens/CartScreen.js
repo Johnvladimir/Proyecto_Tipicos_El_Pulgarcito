@@ -29,11 +29,11 @@ export default function CartScreen(props) {
   return (
     <div className="row top">
       <div className="col-2">
-        <h1>Shopping Cart</h1>
+        <h1>Carro de compras</h1>
         {error && <MessageBox variant="danger">{error}</MessageBox>}
         {cartItems.length === 0 ? (
           <MessageBox>
-            Cart is empty. <Link to="/">Go Shopping</Link>
+            Carrito vacío. <Link to="/">Realizar compras</Link>
           </MessageBox>
         ) : (
           <ul>

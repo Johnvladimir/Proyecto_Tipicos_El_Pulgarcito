@@ -35,7 +35,7 @@ export default function ProfileScreen() {
     e.preventDefault();
     // dispatch update profile
     if (password !== confirmPassword) {
-      alert("Password and Confirm Password Are Not Matched");
+      alert("La contraseña y la confirmación de la contraseña no son correctas");
     } else {
       dispatch(
         updateUserProfile({
@@ -51,7 +51,7 @@ export default function ProfileScreen() {
     <div>
       <form className="form" onSubmit={submitHandler}>
         <div>
-          <h1>User Profile</h1>
+          <h1>Perfil de usuario</h1>
         </div>
         {loading ? (
           <LoadingBox></LoadingBox>
@@ -65,51 +65,51 @@ export default function ProfileScreen() {
             )}
             {successUpdate && (
               <MessageBox variant="success">
-                Profile Updated Successfully
+                Perfil actualizado con exito
               </MessageBox>
             )}
             <div>
-              <label htmlFor="name">Name</label>
+              <label htmlFor="name">Nombre</label>
               <input
                 id="name"
                 type="text"
-                placeholder="Enter name"
+                placeholder="Ingrese nombre"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
               ></input>
             </div>
             <div>
-              <label htmlFor="email">Email</label>
+              <label htmlFor="email">Correo</label>
               <input
                 id="email"
                 type="email"
-                placeholder="Enter email"
+                placeholder="Ingrese nombre"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
               ></input>
             </div>
             <div>
-              <label htmlFor="password">Password</label>
+              <label htmlFor="password">Contraseña</label>
               <input
                 id="password"
                 type="password"
-                placeholder="Enter password"
+                placeholder="Ingrese la contraseña"
                 onChange={(e) => setPassword(e.target.value)}
               ></input>
             </div>
             <div>
-              <label htmlFor="confirmPassword">confirm Password</label>
+              <label htmlFor="confirmPassword">Confirme la contraseña</label>
               <input
                 id="confirmPassword"
                 type="password"
-                placeholder="Enter confirm password"
+                placeholder="Ingrese confirmación de contraseña"
                 onChange={(e) => setConfirmPassword(e.target.value)}
               ></input>
             </div>
             <div>
               <label />
               <button className="primary" type="submit">
-                Update
+                Actualizar
               </button>
             </div>
           </>

@@ -28,7 +28,7 @@ export default function CategoryListScreen(props) {
   }, [dispatch, props.history, successDelete, userInfo._id]);
 
   const deleteHandler = (category) => {
-    if (window.confirm("Are you sure to delete?")) {
+    if (window.confirm("Esta seguro que quiere eliminarlo?")) {
       dispatch(deleteCategory(category._id));
     }
   };

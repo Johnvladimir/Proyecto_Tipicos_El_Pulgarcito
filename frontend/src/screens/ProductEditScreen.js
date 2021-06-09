@@ -212,7 +212,7 @@ export default function ProductEditScreen(props) {
             <div>
               <label></label>
               <button className="primary" type="submit">
-                Update
+                Actualizar
               </button>
             </div>
           </>

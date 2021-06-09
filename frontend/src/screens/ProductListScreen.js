@@ -29,7 +29,7 @@ export default function ProductListScreen(props) {
   }, [dispatch, props.history, successDelete, userInfo._id, pageNumber]);
 
   const deleteHandler = (product) => {
-    if (window.confirm("Are you sure to delete?")) {
+    if (window.confirm("Esta seguro que quiere eliminarlo?")) {
       dispatch(deleteProduct(product._id));
     }
   };

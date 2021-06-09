@@ -23,13 +23,13 @@ export default function OrderListScreen(props) {
     dispatch(listOrders());
   }, [dispatch, successDelete, userInfo._id]);
   const deleteHandler = (order) => {
-    if (window.confirm("Are you sure to delete?")) {
+    if (window.confirm("Esta seguro que quiere eliminarlo?")) {
       dispatch(deleteOrder(order._id));
     }
   };
   return (
     <div className="margin-top">
-      <h1 className="table-title">Orders</h1>
+      <h1 className="table-title">Ordenes</h1>
       {loadingDelete && <LoadingBox></LoadingBox>}
       {errorDelete && <MessageBox variant="danger">{errorDelete}</MessageBox>}
       {loading ? (
@@ -41,12 +41,12 @@ export default function OrderListScreen(props) {
           <thead>
             <tr>
               <th>ID</th>
-              <th>USER</th>
-              <th>DATE</th>
+              <th>USUARIO</th>
+              <th>FECHA</th>
               <th>TOTAL</th>
-              <th>PAID</th>
-              <th>DELIVERED</th>
-              <th>ACTIONS</th>
+              <th>PAGADO</th>
+              <th>ENTREGADO</th>
+              <th>ACCIONES</th>
             </tr>
           </thead>
           <tbody>
@@ -70,14 +70,14 @@ export default function OrderListScreen(props) {
                       props.history.push(`/order/${order._id}`);
                     }}
                   >
-                    Details
+                    Detalles
                   </button>
                   <button
                     type="button"
                     className="small"
                     onClick={() => deleteHandler(order)}
                   >
-                    Delete
+                    Eliminar
                   </button>
                 </td>
               </tr>

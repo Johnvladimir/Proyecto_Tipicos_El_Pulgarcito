@@ -41,7 +41,7 @@ export default function HomeScreen({
           <MessageBox variant="danger">{error}</MessageBox>
         ) : (
           <>
-            {products.length === 0 && <MessageBox>No Product Found</MessageBox>}
+            {products.length === 0 && <MessageBox>Producto no encontrado</MessageBox>}
             <div className="row align product-list">
               {products.map((product) => (
                 <Product key={product._id} product={product}></Product>
