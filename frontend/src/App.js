@@ -199,7 +199,13 @@ function App() {
           <Route path="/aboutus" component={AboutUs}></Route>
           <Route
             path="/search/name/:name?"
-            component={SearchScreen}
+            render={(props) => (
+              <SearchScreen
+                {...props}
+                sidebarIsOpen={sidebarIsOpen}
+                setSidebarIsOpen={setSidebarIsOpen}
+              />
+            )}
             exact
           ></Route>
           <Route
@@ -215,12 +221,24 @@ function App() {
           ></Route>
           <Route
             path="/search/category/:category/name/:name"
-            component={SearchScreen}
+            render={(props) => (
+              <SearchScreen
+                {...props}
+                sidebarIsOpen={sidebarIsOpen}
+                setSidebarIsOpen={setSidebarIsOpen}
+              />
+            )}
             exact
           ></Route>
           <Route
             path="/search/category/:category/name/:name/min/:min/max/:max/rating/:rating/order/:order/pageNumber/:pageNumber"
-            component={SearchScreen}
+            render={(props) => (
+              <SearchScreen
+                {...props}
+                sidebarIsOpen={sidebarIsOpen}
+                setSidebarIsOpen={setSidebarIsOpen}
+              />
+            )}
             exact
           ></Route>
           <PrivateRoute
