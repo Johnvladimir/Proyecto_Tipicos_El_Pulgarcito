@@ -25,7 +25,6 @@ import SearchBox from "./components/SearchBox";
 import SearchScreen from "./screens/SearchScreen";
 import { listProductCategories } from "./actions/productActions";
 import MapScreen from "./screens/MapScreen";
-import ChatBox from "./components/ChatBox";
 import FAQScreen from "./screens/FAQScreen";
 import AboutUs from "./screens/AboutUs";
 import { FaShoppingCart, FaUserAlt } from "react-icons/fa";
@@ -272,7 +271,6 @@ function App() {
         </main>
 
         <footer className="row center">
-          {userInfo && !userInfo.isAdmin && <ChatBox userInfo={userInfo} />}
           <div>Todos los derechos resevados</div>{" "}
         </footer>
       </div>
