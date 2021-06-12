@@ -24,7 +24,6 @@ import UserEditScreen from "./screens/UserEditScreen";
 import SearchBox from "./components/SearchBox";
 import SearchScreen from "./screens/SearchScreen";
 import { listProductCategories } from "./actions/productActions";
-import MapScreen from "./screens/MapScreen";
 import FAQScreen from "./screens/FAQScreen";
 import AboutUs from "./screens/AboutUs";
 import { FaShoppingCart, FaUserAlt } from "react-icons/fa";
@@ -245,7 +244,6 @@ function App() {
             path="/profile"
             component={ProfileScreen}
           ></PrivateRoute>
-          <PrivateRoute path="/map" component={MapScreen}></PrivateRoute>
           <AdminRoute
             path="/productlist"
             component={ProductListScreen}

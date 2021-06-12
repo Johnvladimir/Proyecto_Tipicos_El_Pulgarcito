@@ -28,7 +28,6 @@ import {
   categoryUpdateReducer,
 } from "./reducers/categoryReducers";
 import {
-  userAddressMapReducer,
   userDeleteReducer,
   userDetailsReducer,
   userListReducer,
@@ -77,7 +76,6 @@ const reducer = combineReducers({
   userDelete: userDeleteReducer,
   productCategoryList: productCategoryListReducer,
   productReviewCreate: productReviewCreateReducer,
-  userAddressMap: userAddressMapReducer,
   orderSummary: orderSummaryReducer,
   categoryCreate: categoryCreateReducer,
   categoryDelete: categoryDeleteReducer,

@@ -123,12 +123,3 @@ export const userDeleteReducer = (state = {}, action) => {
       return state;
   }
 };
-
-export const userAddressMapReducer = (state = {}, action) => {
-  switch (action.type) {
-    case USER_ADDRESS_MAP_CONFIRM:
-      return { address: action.payload };
-    default:
-      return state;
-  }
-};
