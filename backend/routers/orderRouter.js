@@ -115,6 +115,7 @@ orderRouter.put(
       "user",
       "email name"
     );
+    console.log(order, "ordeeeeeeeeeeer");
     if (order) {
       order.isPaid = true;
       order.paidAt = Date.now();

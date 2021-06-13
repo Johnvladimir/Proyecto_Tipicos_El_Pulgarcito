@@ -101,21 +101,26 @@ export default function OrderScreen(props) {
                 )}
               </div>
             </li>
-            <li>
-              <div className="card card-body">
-                <h2>Pago</h2>
-                <p>
-                  <strong>Método:</strong> {order.paymentMethod}
-                </p>
-                {order.isPaid ? (
-                  <MessageBox variant="success">
-                    Pagado en {order.paidAt}
-                  </MessageBox>
-                ) : (
-                  <MessageBox variant="danger">No pagado</MessageBox>
-                )}
-              </div>
-            </li>
+            {order.paymentMethod !== "Efectivo" ? (
+              <li>
+                <div className="card card-body">
+                  <h2>Pago</h2>
+                  <p>
+                    <strong>Método:</strong> {order.paymentMethod}
+                  </p>
+                  {order.isPaid ? (
+                    <MessageBox variant="success">
+                      Pagado en {order.paidAt}
+                    </MessageBox>
+                  ) : (
+                    <MessageBox variant="danger">No pagado</MessageBox>
+                  )}
+                </div>
+              </li>
+            ) : (
+              <li></li>
+            )}
+
             <li>
               <div className="card card-body">
                 <h2>Items de orden</h2>
@@ -191,7 +196,7 @@ export default function OrderScreen(props) {
                         <MessageBox variant="danger">{errorPay}</MessageBox>
                       )}
                       {loadingPay && <LoadingBox></LoadingBox>}
-                      {order.paymentMethod != "Efectivo" ? (
+                      {order.paymentMethod !== "Efectivo" ? (
                         <PayPalButton
                           amount={order.totalPrice}
                           onSuccess={successPaymentHandler}
