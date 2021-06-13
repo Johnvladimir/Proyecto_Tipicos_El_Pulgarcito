@@ -719,8 +719,89 @@ img.large {
   flex-direction: column;
   justify-content: flex-start;
   width: 100%;
-  margin-top: 15px;
 }
+.about-banner {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 16vw;
+  padding-bottom: 16vw;
+  position: relative;
+  background-color: #fff;
+  background-position: 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-image: url("/images/aboutus-banner.png");
+}
+.about-banner h1 {
+  font-family: "Yeseva One", display !important;
+  font-size: 80px !important;
+  line-height: 1.3em !important;
+  color: #333;
+}
+.about-banner a {
+  color: #ffffff !important;
+  border-radius: 66px !important;
+  letter-spacing: 1px !important;
+  background-image: initial;
+  background-color: rgba(47, 56, 84, 0.9);
+  padding: 0.3em 1em;
+  border: 10px solid transparent;
+  transition: color 300ms ease 0ms, background-color 300ms ease 0ms,
+    border-radius 300ms ease 0ms, letter-spacing 300ms ease 0ms;
+}
+.about-banner a:hover {
+  background-color: rgba(47, 56, 84, 0.75);
+}
+.who-we-are {
+  padding-top: 100px;
+  padding-right: 0px;
+  padding-bottom: 100px;
+  padding-left: 0px;
+  background-color: #252e46 !important;
+}
+.who-we-are .text-container {
+  max-width: 60%;
+  margin: 0 auto;
+}
+.who-we-are .text-container h2 {
+  font-size: 3rem;
+  color: white;
+  text-align: center;
+}
+.who-we-are .normal-text {
+  font-size: 2rem;
+  color: rgba(255, 255, 255, 0.75);
+  text-align: center;
+}
+.who-we-are .benefits {
+  max-width: 1080px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  margin: 10rem auto 5rem auto;
+}
+.who-we-are .benefits .item {
+  width: 30%;
+  margin: 1rem 2rem;
+  text-align: center;
+}
+@media screen and (max-width: 1024px) {
+  .who-we-are .benefits {
+    flex-direction: column;
+    align-items: center;
+  }
+  .who-we-are .benefits .item {
+    width: 60% !important;
+    margin: 1rem 2rem;
+    text-align: center;
+  }
+  .who-we-are .normal-text {
+    font-size: 1.75rem;
+  }
+}
+
 .about-title {
   position: absolute;
   z-index: -1;
@@ -802,6 +883,40 @@ img.large {
   margin-left: 10px;
   margin-right: 10px;
   font-size: 2rem;
+}
+.contact-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 80%;
+  margin: 10rem auto;
+}
+.contact-info .contact-item {
+  width: 20%;
+  margin: 2.5%;
+  font-family: "Montserrat", Helvetica, Arial, Lucida, sans-serif;
+}
+.contact-info .contact-item .contact-title {
+  color: rgb(47, 56, 84);
+  font-weight: 700;
+  font-size: 20px;
+}
+.contact-info .contact-item .contact-text {
+  color: #666;
+  font-weight: 500;
+  font-size: 16px;
+}
+@media screen and (max-width: 960px) {
+  .contact-info {
+    flex-direction: column;
+    align-items: center;
+  }
+  .contact-info .contact-item {
+    width: 60%;
+    text-align: center;
+    margin: 2.5%;
+    font-family: "Montserrat", Helvetica, Arial, Lucida, sans-serif;
+  }
 }
 /* RESULTS SCREEN */
 .results-container {
