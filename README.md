@@ -19,7 +19,7 @@
 
 ### 2. Run Backend
 
-- Open new terminal and locate into Proyecto_Tipicos_El_Pulgarcito folder
+- Open new terminal and locate it into Proyecto_Tipicos_El_Pulgarcito folder
 
 ```
 $ npm install
@@ -28,7 +28,7 @@ $ npm run start
 
 ### 3. Run Frontend
 
-- Open new terminal and localte into Proyectio_Tipicos_El_Pulgarcito folder
+- Open new terminal and locate it into Proyecto_Tipicos_El_Pulgarcito folder
 
 ```
 $ cd frontend
