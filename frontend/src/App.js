@@ -30,6 +30,7 @@ import { FaShoppingCart, FaUserAlt } from "react-icons/fa";
 import CategoryListScreen from "./screens/CategoryListScreen";
 import CategoryEditScreen from "./screens/CategoryEditScreen";
 import CategoryCreateScreen from "./screens/CategoryCreateScreen";
+import DashboardScreen from "./screens/DashboardScreen";
 
 function App() {
   const cart = useSelector((state) => state.cart);
@@ -132,6 +133,9 @@ function App() {
                     Admin <i className="fa fa-caret-down"></i>
                   </Link>
                   <ul className="dropdown-content">
+                    <li>
+                      <Link to="/dashboard">Dashboard</Link>
+                    </li>
                     <li>
                       <Link to="/productlist">Productos</Link>
                     </li>
@@ -268,6 +272,10 @@ function App() {
           <AdminRoute
             path="/user/:id/edit"
             component={UserEditScreen}
+          ></AdminRoute>
+          <AdminRoute
+            path="/dashboard"
+            component={DashboardScreen}
           ></AdminRoute>
 
           <Route
